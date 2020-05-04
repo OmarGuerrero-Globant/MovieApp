@@ -1,0 +1,123 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "28.0.3"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+
+    //Libraries
+    butterKnifeVersion = '8.6.0'
+    constraintVersion = '1.1.3'
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.8.0'
+    OkHttp3Downloader = '1.1.0'
+    loggingInterceptorVersion = '3.0.0'
+    rxAndroidVersion = '2.1.0'
+    rxJavaVersion = '2.2.6'
+    androidSupportVersion = '28.0.0'
+    daggerVersion = '2.19'
+    picassoVersion = '2.5.2'
+    jUnitVersion = '4.12'
+    mockitoVersion = '3.3.3'
+    mockWebServerVersion = '3.13.1'
+    androidArchVersion = '1.1.1'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    glideVersion = '4.7.1'
+    mockitoKotlinVersion = '2.2.0'
+    robolectricVersion = '3.4.2'
+
+    androidRunnerVersion = '1.1.0'
+    androidRulesVersion = '1.1.0'
+    espressoCoreVersion = '3.1.0'
+    espressoIntentsVersion = '3.1.0'
+    androidCoreTestingVersion = '1.1.1'
+    dexmakerMockitoVersion = '2.25.0'
+    fragmentTestRulesVersion = '1.0.0'
+    dexopenerVersion = '2.0.4'
+    rx2IdlerVersion = '0.9.0'
+
+    androidSupport = [
+            appCompatV7     : 'androidx.appcompat:appcompat:1.0.0',
+            cardviewV7      : 'androidx.cardview:cardview:1.0.0',
+            recyclerviewV7  : 'androidx.recyclerview:recyclerview:1.0.0',
+            paletteV7       : 'androidx.palette:palette:1.0.0',
+            supportV4       : 'androidx.legacy:legacy-support-v4:1.0.0',
+            designSupport   : 'com.google.android.material:material:1.0.0',
+            contrainLayout  : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            supportCore     : "com.android.support:support-core-utils:${androidSupportVersion}",
+
+            supportAnnotation : "com.android.support:support-annotations:${androidSupportVersion}",
+            supportTransition : 'androidx.transition:transition:1.0.0',
+            supportPreference : 'androidx.legacy:legacy-preference-v14:1.0.0',
+            supportCustomTab  : 'androidx.browser:browser:1.0.0',
+    ]
+
+    rx = [
+            rxAndroid   : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava      : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    okhttp = [
+            okhttp                    : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            okhttpUrlConnection       : "com.squareup.okhttp3:okhttp-urlconnection:${okhttpVersion}",
+            okHttp3Downloader         : "com.jakewharton.picasso:picasso2-okhttp3-downloader:${OkHttp3Downloader}",
+            okHttpInterceptor         : "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    ]
+
+    retrofit = [
+            retrofit    : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            gson        : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            adapterRx   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    ]
+
+    lifecycle = [
+            lifetimeRuntime     : 'androidx.lifecycle:lifecycle-runtime:2.0.0',
+            lifetimeExtensions  : 'androidx.lifecycle:lifecycle-extensions:2.0.0',
+            lifetimeCompiler    : 'androidx.lifecycle:lifecycle-compiler:2.0.0',
+    ]
+
+    tests = [
+            jUnit        : "junit:junit:${jUnitVersion}",
+            kotlinJUnit  : "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
+            mockitoCore  : "org.mockito:mockito-core:${mockitoVersion}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}",
+            mockito      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+    ]
+
+    testsAndroid = [
+            junitX              : "androidx.test.ext:junit:1.1.1",
+            androidRunner       : "androidx.test:runner:${androidRunnerVersion}",
+            androidRules        : "androidx.test:rules:${androidRulesVersion}",
+            espressoCore        : "androidx.test.espresso:espresso-core:${espressoCoreVersion}",
+            espressoIntents     : "androidx.test.espresso:espresso-intents:${espressoIntentsVersion}",
+            androidCoreTesting  : "android.arch.core:core-testing:${androidCoreTestingVersion}",
+            dexmakerMockito     : "com.linkedin.dexmaker:dexmaker-mockito:${dexmakerMockitoVersion}",
+            fragmentTestRules   : "com.21buttons:fragment-test-rule:${fragmentTestRulesVersion}",
+            dexopener           : "com.github.tmurakami:dexopener:${dexopenerVersion}",
+            rx2Idler            : "com.squareup.rx.idler:rx2-idler:${rx2IdlerVersion}"
+    ]
+
+    appDependencies = [
+            daggerCompiler      : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger              : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroid       : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerSupport       : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessorApt  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
+            javaxAnnotation     : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject         : "javax.inject:javax.inject:${javaxInjectVersion}",
+            glide               : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideAnnotation     : "com.github.bumptech.glide:compiler:${glideVersion}",
+            glideOkhttp         : "com.github.bumptech.glide:okhttp3-integration:${glideVersion}",
+    ]
+
+
+}
