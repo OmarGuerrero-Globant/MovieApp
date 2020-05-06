@@ -40,6 +40,8 @@ class PopularMoviesFragment : Fragment(), PopularContract.View {
 
     override fun onMoviesLoaded(list: List<MovieDto>) {
         progress.visibility = View.GONE
+        adapter = PopularAdapter(listOfMovies){navigateToDetail(it)}
+        recycler.adapter = adapter
     }
 
     override fun onMoviesLoadedFailed(message: String) {

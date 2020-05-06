@@ -11,6 +11,7 @@ class AuthInterceptor : Interceptor {
         var request = chain.request()
         val url = request.url().newBuilder()
             .addQueryParameter("api_key", BuildConfig.API_KEY)
+            .addQueryParameter("language" , "en-US")
             .build()
         request = request.newBuilder().url(url).build()
         return chain.proceed(request) } }

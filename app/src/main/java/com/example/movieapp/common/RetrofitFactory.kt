@@ -1,5 +1,7 @@
 package com.example.movieapp.common
 
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
@@ -7,17 +9,17 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.DateFormat
 import java.util.concurrent.TimeUnit
+
 
 object RetrofitFactory {
 
-    private const val API_URL = "https://developers.themoviedb.org/3/"
+    private const val API_URL = "https://api.themoviedb.org/3/"
     private const val TIME_OUT_API = 30
 
     fun buildRetrofitService() : Retrofit{
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
+        val gson : Gson = GsonProvider.makeGson()
 
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY

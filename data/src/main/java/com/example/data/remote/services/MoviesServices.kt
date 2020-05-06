@@ -14,6 +14,6 @@ interface MoviesServices {
     fun getMovieById(@Path("id") id : Long) : Single<Response<GetMovieResponse>>
 
     @GET("movie/popular")
-    fun getMovies() : Single<Response<GetMoviesResponse>>
+    fun getMovies(@Query("page") page : Int) : Single<Response<GetMoviesResponse>>
 
 }

@@ -12,7 +12,7 @@ class MovieDataRepository(private val moviesServices: MoviesServices) : MoviesRe
             .flatMap {response ->
                 return@flatMap if(response.isSuccessful){
                     response.body()?.let {
-                        Single.just(MovieDto(it.id, it.title, it.overview, it.posterPath))
+                        Single.just(MovieDto(it.id?.toInt(), it.title, it.overview, it.posterPath))
                     }
                 }else{
                     Single.error(Throwable(response.errorBody().toString()))
@@ -21,12 +21,12 @@ class MovieDataRepository(private val moviesServices: MoviesServices) : MoviesRe
     }
 
     override fun getMovies(page : Int): Single<List<MovieDto>> {
-        return moviesServices.getMovies()
+        return moviesServices.getMovies(page)
             .flatMap {response ->
                 return@flatMap if(response.isSuccessful){
                      response.body()?.let { listOfMovies ->
                         Single.just(  listOfMovies.results?.map {movie ->
-                            MovieDto(movie.id, movie.title, movie.overview, movie.posterPath)
+                            MovieDto(movie.id?.toInt(), movie.title, movie.overview, movie.posterPath)
                         })
                     }
                 }else{
