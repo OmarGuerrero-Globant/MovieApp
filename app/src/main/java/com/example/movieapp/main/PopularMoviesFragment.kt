@@ -1,6 +1,7 @@
 package com.example.movieapp.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +13,13 @@ import com.example.domain.dto.MovieDto
 import com.example.movieapp.R
 import kotlinx.android.synthetic.main.fragment_popular_movies.*
 
-class PopularMoviesFragment : Fragment(), MainContract.View {
+class PopularMoviesFragment : Fragment(), PopularContract.View {
 
-    private lateinit var adapter: MainAdapter
+    private lateinit var adapter: PopularAdapter
     private lateinit var listOfMovies : List<MovieDto>
-    private lateinit var presenter : MainPresenter
-    private lateinit var registry: MainRegistry
+    private lateinit var presenter : PopularPresenter
+    private lateinit var registry: PopularRegistry
     private lateinit var navController : NavController
-
-    companion object{
-        const val EXTRA_TEXT: String = "text"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,25 +31,16 @@ class PopularMoviesFragment : Fragment(), MainContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registry = MainRegistry()
-        presenter = registry.provide(this) as MainPresenter
+        registry = PopularRegistry()
+        presenter = registry.provide(this) as PopularPresenter
         presenter.getMovieList(1)
         progress.visibility = View.VISIBLE
         navController = view.findNavController()
-    }
-
-
-    override fun onMovieLoaded(movieDto: MovieDto) {
-
-    }
-
-    override fun onMovieLoadedFailed(message: String) {
-
+        swipeRefresh.setOnRefreshListener { refresh() }
     }
 
     override fun onMoviesLoaded(list: List<MovieDto>) {
         progress.visibility = View.GONE
-        //Toast.makeText(this, "Success request", Toast.LENGTH_SHORT).show()
     }
 
     override fun onMoviesLoadedFailed(message: String) {
@@ -61,16 +49,21 @@ class PopularMoviesFragment : Fragment(), MainContract.View {
             MovieDto(2, "Test2", "", "failed"),
             MovieDto(3, "Test3", "", "failed")
         )
-        adapter = MainAdapter(listOfMovies){ navigateToDetail(it)}
+        adapter = PopularAdapter(listOfMovies){ navigateToDetail(it)}
         recycler.adapter = adapter
         progress.visibility = View.GONE
-        //Toast.makeText(this, "Failed request", Toast.LENGTH_SHORT).show()
+        swipeRefresh.isRefreshing = false
     }
 
 
     private fun navigateToDetail(movieDto: MovieDto){
        navController.navigate(R.id.action_popularMoviesFragment_to_movieFragment,
-       bundleOf("movieTitle" to movieDto.title, "overview" to movieDto.overview))
+       bundleOf("nothing" to movieDto.id))
+    }
+
+    private fun refresh(){
+        Log.d("XXX", "Refreshing")
+        presenter.getMovieList(1)
     }
 
 }

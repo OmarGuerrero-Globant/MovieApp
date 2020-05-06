@@ -1,4 +1,4 @@
-package com.example.movieapp.utils
+package com.example.movieapp.common
 
 import com.example.movieapp.BuildConfig
 import okhttp3.Interceptor
@@ -10,6 +10,7 @@ class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         val url = request.url().newBuilder()
-            .addQueryParameter("api_key", BuildConfig.API_KEY) .build()
+            .addQueryParameter("api_key", BuildConfig.API_KEY)
+            .build()
         request = request.newBuilder().url(url).build()
         return chain.proceed(request) } }

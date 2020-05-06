@@ -47,6 +47,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation rx.values()
+    implementation okhttp.values()
     implementation retrofit.values()
     implementation appDependencies.values()
     implementation androidSupport.values()

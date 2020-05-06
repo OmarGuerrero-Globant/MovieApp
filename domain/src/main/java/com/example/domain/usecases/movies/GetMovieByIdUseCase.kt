@@ -12,7 +12,7 @@ class GetMovieByIdUseCase(private val moviesRepository: MoviesRepository,
                           postExecutionThread: PostExecutionThread
 ) : SingleUseCase<GetMovieByIdUseCase.Params, MovieDto>(threadExecutor, postExecutionThread) {
 
-    data class Params(val id : String)
+    data class Params(val id : Int)
 
     override fun buildSingleUseCase(params: Params?): Single<MovieDto> {
         return params?.let{

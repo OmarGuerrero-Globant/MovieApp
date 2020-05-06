@@ -10,10 +10,10 @@ import retrofit2.http.Query
 
 interface MoviesServices {
 
-    @GET("movie/{id}?append_to_response=videos,credits,reviews")
+    @GET("movie/{id}")
     fun getMovieById(@Path("id") id : Long) : Single<Response<GetMovieResponse>>
 
     @GET("movie/popular")
-    fun getMovies(@Query("page") page : Int) : Single<Response<GetMoviesResponse>>
+    fun getMovies() : Single<Response<GetMoviesResponse>>
 
 }

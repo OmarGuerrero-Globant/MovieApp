@@ -32,24 +32,24 @@ class GetMovieByIdUseCaseTest {
 
     @Test
     fun validateGetMovieSuccess(){
-        val params = GetMovieByIdUseCase.Params("1")
-        val movieMock = MovieDto("1", "test", "overview","imageTest")
-        Mockito.`when`(moviesRepository.getMovieById("1")).thenReturn(Single.just(movieMock))
+        val params = GetMovieByIdUseCase.Params(1)
+        val movieMock = MovieDto(1, "test", "overview","imageTest")
+        Mockito.`when`(moviesRepository.getMovieById(1)).thenReturn(Single.just(movieMock))
         getMovieByIdUseCase.execute(params)
             .test()
             .assertComplete()
             .assertNoErrors()
             .assertValue{ movieDto ->
-            movieDto.id == "1"
+            movieDto.id == 1
         }
     }
 
     @Test
     fun validateGetMovieError(){
-        val params = GetMovieByIdUseCase.Params("1")
-        val movieMock = MovieDto("1", "test", "overview","imageTest")
+        val params = GetMovieByIdUseCase.Params(1)
+        val movieMock = MovieDto(1, "test", "overview","imageTest")
         val message : String = "Not Found"
-        Mockito.`when`(moviesRepository.getMovieById("1")).thenReturn(Single.error(Throwable(message)))
+        Mockito.`when`(moviesRepository.getMovieById(1)).thenReturn(Single.error(Throwable(message)))
         getMovieByIdUseCase.execute(params)
             .test()
             .assertError{
@@ -60,8 +60,8 @@ class GetMovieByIdUseCaseTest {
 
     @Test
     fun validateGetMovieFailed(){
-        val params = GetMovieByIdUseCase.Params("1")
-        val movieMock = MovieDto("1", "test", "overview","imageTest")
+        val params = GetMovieByIdUseCase.Params(1)
+        val movieMock = MovieDto(1, "test", "overview","imageTest")
         val message : String = "Invalid Argument"
         getMovieByIdUseCase.execute(null)
             .test()

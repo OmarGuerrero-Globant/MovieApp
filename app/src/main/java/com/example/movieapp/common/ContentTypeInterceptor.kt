@@ -1,4 +1,4 @@
-package com.example.movieapp.utils
+package com.example.movieapp.common
 
 import okhttp3.Interceptor
 import okhttp3.Response
