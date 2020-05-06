@@ -1,6 +1,5 @@
 package com.example.data
 
-import com.example.data.remote.responses.GetMovieResponse
 import com.example.data.remote.services.MoviesServices
 import io.reactivex.Single
 import org.junit.Before

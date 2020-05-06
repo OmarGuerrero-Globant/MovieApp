@@ -106,16 +106,16 @@ ext {
     ]
 
     appDependencies = [
-            daggerCompiler      : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger              : "com.google.dagger:dagger:${daggerVersion}",
-            daggerAndroid       : "com.google.dagger:dagger-android:${daggerVersion}",
-            daggerSupport       : "com.google.dagger:dagger-android-support:${daggerVersion}",
-            daggerProcessorApt  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+//            daggerCompiler      : "com.google.dagger:dagger-compiler:${daggerVersion}",
+//            dagger              : "com.google.dagger:dagger:${daggerVersion}",
+//            daggerAndroid       : "com.google.dagger:dagger-android:${daggerVersion}",
+//            daggerSupport       : "com.google.dagger:dagger-android-support:${daggerVersion}",
+//            daggerProcessorApt  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
             picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
             javaxAnnotation     : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject         : "javax.inject:javax.inject:${javaxInjectVersion}",
             glide               : "com.github.bumptech.glide:glide:${glideVersion}",
-            glideAnnotation     : "com.github.bumptech.glide:compiler:${glideVersion}",
+            //glideAnnotation     : "com.github.bumptech.glide:compiler:${glideVersion}",
             glideOkhttp         : "com.github.bumptech.glide:okhttp3-integration:${glideVersion}",
     ]
 

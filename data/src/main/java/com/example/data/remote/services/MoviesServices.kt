@@ -1,6 +1,7 @@
 package com.example.data.remote.services
 
 import com.example.data.remote.responses.GetMovieResponse
+import com.example.data.remote.responses.GetMoviesResponse
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,6 +14,6 @@ interface MoviesServices {
     fun getMovieById(@Path("id") id : Long) : Single<Response<GetMovieResponse>>
 
     @GET("movie/popular")
-    fun getMovies(@Query("page") page : Int) : Single<Response<List<GetMovieResponse>>>
+    fun getMovies(@Query("page") page : Int) : Single<Response<GetMoviesResponse>>
 
 }

@@ -6,6 +6,11 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.example.movieapp"
         minSdkVersion 23
@@ -17,7 +22,13 @@ android {
     }
 
     buildTypes {
+
+        debug{
+            buildConfigField "String", "API_KEY", '"2ff9829ebd3a03e2f8d5cf9e51939c44"'
+        }
+
         release {
+            buildConfigField "String", "API_KEY", '"2ff9829ebd3a03e2f8d5cf9e51939c44"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -38,6 +49,10 @@ dependencies {
     implementation rx.values()
     implementation retrofit.values()
     implementation appDependencies.values()
+    implementation androidSupport.values()
     testImplementation tests.values()
 
+    implementation project(':domain')
+    implementation project(':data')
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
 }

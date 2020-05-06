@@ -25,7 +25,7 @@ class MovieDataRepository(private val moviesServices: MoviesServices) : MoviesRe
             .flatMap {response ->
                 return@flatMap if(response.isSuccessful){
                      response.body()?.let { listOfMovies ->
-                        Single.just(  listOfMovies.map { movie ->
+                        Single.just(  listOfMovies.results.map {movie ->
                             MovieDto(movie.id, movie.title, movie.overview, movie.posterPath)
                         })
                     }
