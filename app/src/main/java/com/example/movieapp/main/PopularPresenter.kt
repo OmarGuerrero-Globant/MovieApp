@@ -13,7 +13,6 @@ class PopularPresenter(private val moviesProvider: MoviesProvider,
     private val disposable = CompositeDisposable()
 
     override fun getMovieList(page : Int) {
-        Log.d("XXX", "Refresh")
         val params = GetMoviesUseCase.Params(page)
         disposable.add(moviesProvider.getMoviesUseCase().execute(params)
             .subscribe({success ->

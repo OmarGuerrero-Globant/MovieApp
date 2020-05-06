@@ -1,7 +1,6 @@
 package com.example.movieapp.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +61,6 @@ class PopularMoviesFragment : Fragment(), PopularContract.View {
     }
 
     private fun refresh(){
-        Log.d("XXX", "Refreshing")
         presenter.getMovieList(1)
     }
 

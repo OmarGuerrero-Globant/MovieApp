@@ -40,6 +40,7 @@ class MovieFragment : Fragment(), MovieContract.View {
     override fun onMovieLoadedFailed(message: String) {
         titleTV.text = "Unknown"
         overviewTV.text = "Failed request"
+        posterImage.loadUrl("https://image.tmdb.org/t/p/w185/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg")
     }
 
 }
