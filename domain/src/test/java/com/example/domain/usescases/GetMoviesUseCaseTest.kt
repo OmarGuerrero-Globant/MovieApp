@@ -34,8 +34,8 @@ class GetMoviesUseCaseTest{
     fun validateGetMoviesSuccess(){
         val params = GetMoviesUseCase.Params(1)
         val listOfMoviesMock = listOf<MovieDto>(
-            MovieDto("1", "title", "overview", "image"),
-            MovieDto("2", "title", "overview", "image")
+            MovieDto(1, "title", "overview", "image"),
+            MovieDto(2, "title", "overview", "image")
         )
         Mockito.`when`(moviesRepository.getMovies(1)).thenReturn(Single.just(listOfMoviesMock))
         getMoviesUseCase.execute(params)
@@ -51,8 +51,8 @@ class GetMoviesUseCaseTest{
     fun validateGetMovieError(){
         val params = GetMoviesUseCase.Params(1)
         val listOfMoviesMock = listOf<MovieDto>(
-            MovieDto("1", "title", "overview", "image"),
-            MovieDto("2", "title", "overview", "image")
+            MovieDto(1, "title", "overview", "image"),
+            MovieDto(2, "title", "overview", "image")
         )
         val message : String = "Not Found"
         Mockito.`when`(moviesRepository.getMovies(1)).thenReturn(Single.error(Throwable(message)))
@@ -68,8 +68,8 @@ class GetMoviesUseCaseTest{
     fun validateGetMovieFailed(){
         val params = GetMoviesUseCase.Params(1)
         val listOfMoviesMock = listOf<MovieDto>(
-            MovieDto("1", "title", "overview", "image"),
-            MovieDto("2", "title", "overview", "image")
+            MovieDto(1, "title", "overview", "image"),
+            MovieDto(2, "title", "overview", "image")
         )
         val message : String = "Invalid Argument"
         getMoviesUseCase.execute(null)

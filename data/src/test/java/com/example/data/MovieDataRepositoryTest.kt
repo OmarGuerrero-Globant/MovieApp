@@ -1,5 +1,7 @@
 package com.example.data
 
+import com.example.data.remote.responses.GetMovieResponse
+import com.example.data.remote.responses.GetMoviesResponse
 import com.example.data.remote.services.MoviesServices
 import io.reactivex.Single
 import org.junit.Before
@@ -16,10 +18,10 @@ import kotlin.properties.Delegates
 class MovieDataRepositoryTest {
 
     private var mockPage : Int by Delegates.notNull()
-    private lateinit var mockId : String
+    private var mockId : Int by Delegates.notNull()
     private lateinit var  message : String
     private lateinit var movieMock : GetMovieResponse
-    private lateinit var moviesMock : List<GetMovieResponse>
+    private lateinit var moviesMock : GetMoviesResponse
 
     @Mock
     private lateinit var moviesServices: MoviesServices
@@ -31,24 +33,29 @@ class MovieDataRepositoryTest {
     @Before
     fun setUp(){
         mockPage = 1
-        mockId = "1"
+        mockId = 1
         message = "Not Found"
-        movieMock = GetMovieResponse("1", "test", "overview","imageTest")
-        moviesMock = listOf(
-            GetMovieResponse("1", "test", "overview","imageTest"),
-            GetMovieResponse("2", "test", "overview","imageTest")
+        movieMock = GetMovieResponse(1F, 1, true,"imageTest", 1, false, null, null, null, null, null , null, null, null)
+        moviesMock = GetMoviesResponse(
+            1,
+            listOf(
+                GetMovieResponse(1F, 1, true,"imageTest", 1, false, null, null, null, null, null , null, null, null),
+                GetMovieResponse(1F, 1, true,"imageTest", 2, false, null, null, null, null, null , null, null, null)
+            ),
+            1,
+            1
         )
     }
 
     @Test
     fun validateGetMovieByIdSuccess(){
         Mockito.`when`(moviesServices.getMovieById(1)).thenReturn(Single.just(Response.success(movieMock)))
-        movieDataRepository.getMovieById("1")
+        movieDataRepository.getMovieById(1)
             .test()
             .assertComplete()
             .assertNoErrors()
             .assertValue { movieDto ->
-                movieDto.id == "1"
+                movieDto.id == 1
             }
     }
 
@@ -61,7 +68,7 @@ class MovieDataRepositoryTest {
             .test()
             .assertComplete()
             .assertNoErrors()
-            .assertValue { movies ->
+            .assertValue {movies ->
                 movies.size == 2
             }
     }

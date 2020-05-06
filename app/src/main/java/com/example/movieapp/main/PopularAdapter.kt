@@ -5,17 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.dto.MovieDto
 import com.example.movieapp.R
-import com.example.movieapp.utils.inflate
-import com.example.movieapp.utils.loadUrl
+import com.example.movieapp.common.inflate
+import com.example.movieapp.common.loadUrl
 import kotlinx.android.synthetic.main.single_movie.view.*
 
-class MainAdapter(private val movies : List<MovieDto>, private val listener : (MovieDto) -> Unit
-) : RecyclerView.Adapter<MainAdapter.ViewHolder>(){
+class PopularAdapter(private val movies : List<MovieDto>, private val listener : (MovieDto) -> Unit
+) : RecyclerView.Adapter<PopularAdapter.ViewHolder>(){
 
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         fun bind(movie : MovieDto){
             itemView.movieTitle.text = movie.title
             //itemView.movieImage.loadUrl("https://image.tmdb.org/t/p/w185/${movie.frontImage}")
+            itemView.movieImage.loadUrl("https://image.tmdb.org/t/p/w185/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg")
         }
     }
 
