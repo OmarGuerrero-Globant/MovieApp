@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface MoviesServices {
 
     @GET("movie/{id}")
-    fun getMovieById(@Path("id") id : Long) : Single<Response<GetMovieResponse>>
+    fun getMovieById(@Path("id") id : Int) : Single<Response<GetMovieResponse>>
 
     @GET("movie/popular")
     fun getMovies(@Query("page") page : Int) : Single<Response<GetMoviesResponse>>

@@ -38,13 +38,13 @@ class PopularMoviesFragment : Fragment(), PopularContract.View {
         swipeRefresh.setOnRefreshListener { refresh() }
     }
 
-    override fun onMoviesLoaded(list: List<MovieDto>) {
+    override fun onMoviesLoaded(listOfMovies: List<MovieDto>) {
         progress.visibility = View.GONE
         adapter = PopularAdapter(listOfMovies){navigateToDetail(it)}
         recycler.adapter = adapter
     }
 
-    override fun onMoviesLoadedFailed(message: String) {
+    override fun onMoviesLoadedFailed(errorMessage: String) {
         listOfMovies = listOf(
             MovieDto(1, "Test1", "Overview failed", "failed"),
             MovieDto(2, "Test2", "", "failed"),
@@ -59,11 +59,12 @@ class PopularMoviesFragment : Fragment(), PopularContract.View {
 
     private fun navigateToDetail(movieDto: MovieDto){
        navController.navigate(R.id.action_popularMoviesFragment_to_movieFragment,
-       bundleOf("nothing" to movieDto.id))
+       bundleOf("movieId" to movieDto.id))
     }
 
     private fun refresh(){
         presenter.getMovieList(1)
+        swipeRefresh.isRefreshing = false
     }
 
 }

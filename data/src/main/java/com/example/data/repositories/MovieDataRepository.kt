@@ -8,11 +8,11 @@ import io.reactivex.Single
 class MovieDataRepository(private val moviesServices: MoviesServices) : MoviesRepository {
 
     override fun getMovieById(id: Int): Single<MovieDto> {
-        return moviesServices.getMovieById(id.toLong())
+        return moviesServices.getMovieById(id)
             .flatMap {response ->
                 return@flatMap if(response.isSuccessful){
                     response.body()?.let {
-                        Single.just(MovieDto(it.id?.toInt(), it.title, it.overview, it.posterPath))
+                        Single.just(MovieDto(it.id, it.title, it.overview, it.posterPath))
                     }
                 }else{
                     Single.error(Throwable(response.errorBody().toString()))
@@ -26,7 +26,7 @@ class MovieDataRepository(private val moviesServices: MoviesServices) : MoviesRe
                 return@flatMap if(response.isSuccessful){
                      response.body()?.let { listOfMovies ->
                         Single.just(  listOfMovies.results?.map {movie ->
-                            MovieDto(movie.id?.toInt(), movie.title, movie.overview, movie.posterPath)
+                            MovieDto(movie.id, movie.title, movie.overview, movie.posterPath)
                         })
                     }
                 }else{

@@ -15,8 +15,7 @@ class PopularAdapter(private val movies : List<MovieDto>, private val listener :
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         fun bind(movie : MovieDto){
             itemView.movieTitle.text = movie.title
-            //itemView.movieImage.loadUrl("https://image.tmdb.org/t/p/w185/${movie.frontImage}")
-            itemView.movieImage.loadUrl("https://image.tmdb.org/t/p/w185/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg")
+            itemView.movieImage.loadUrl("https://image.tmdb.org/t/p/w185/${movie.posterImage}")
         }
     }
 

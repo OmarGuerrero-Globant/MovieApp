@@ -24,17 +24,16 @@ class MovieFragment : Fragment(), MovieContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //val id = arguments?.getInt("movieId", 545609)
-        val id = 545609
+        val id = arguments?.getInt("movieId", 545609)
         registry = MovieRegistry()
         presenter = registry.provide(this) as MoviePresenter
-        id.let { presenter.getMovie(it) }
+        id?.let { presenter.getMovie(it) }
     }
 
     override fun onMovieLoaded(movieDto: MovieDto) {
         titleTV.text = movieDto.title
         overviewTV.text = movieDto.overview
-        movieDto.frontImage?.let { posterImage.loadUrl(it) }
+        movieDto.posterImage?.let { posterImage.loadUrl("https://image.tmdb.org/t/p/w185/$it") }
     }
 
     override fun onMovieLoadedFailed(message: String) {

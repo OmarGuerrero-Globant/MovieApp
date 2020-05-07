@@ -6,8 +6,8 @@ interface PopularContract {
 
     interface View{
 
-        fun onMoviesLoaded(list : List<MovieDto>)
-        fun onMoviesLoadedFailed(message: String)
+        fun onMoviesLoaded(listOfMovies : List<MovieDto>)
+        fun onMoviesLoadedFailed(errorMessage: String)
     }
 
     interface Presenter{
